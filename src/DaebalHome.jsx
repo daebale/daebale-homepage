@@ -46,7 +46,7 @@ export default function DaebalHome() {
         </p>
       </section>
 
-      {/* 브랜드 강점 (시각 강조) */}
+      {/* 브랜드 강점 */}
       <section className="bg-blue-50 py-12 px-4 sm:px-6 lg:px-8 mt-16">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
           {[
@@ -61,7 +61,8 @@ export default function DaebalHome() {
           ))}
         </div>
       </section>
-      {/* 서비스 소개 카드형 */}
+
+            {/* 서비스 소개 카드형 */}
       <section id="services" className="max-w-6xl mx-auto mt-20 px-4 sm:px-6 lg:px-8">
         <h3 className="text-2xl font-bold text-center text-blue-700 mb-10">📦 제공 서비스</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -80,51 +81,56 @@ export default function DaebalHome() {
         </div>
       </section>
 
-      {/* 요금 안내 카드형 */}
+      {/* 요금 안내 카드형 (7구간 반영) */}
       <section id="pricing" className="bg-gray-100 mt-20 py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-2xl font-bold text-center text-blue-700 mb-10">💰 요금제 안내</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { range: "~300건", price: "4,500원", highlight: false },
-              { range: "501~700건", price: "3,800원", highlight: true },
-              { range: "1001건 이상", price: "3,500원", highlight: false }
-            ].map(({ range, price, highlight }, idx) => (
-              <div key={idx} className={`rounded-xl p-6 shadow-md text-center ${highlight ? "bg-blue-600 text-white" : "bg-white"}`}>
-                <h4 className="text-lg font-bold mb-2">{range}</h4>
-                <div className="text-3xl font-extrabold mb-2">{price}</div>
-                <p className="text-sm">{highlight ? "가장 인기있는 요금제" : "표준 요금제"}</p>
+              ["~300건", "4,500원"],
+              ["301~500건", "4,000원"],
+              ["501~600건", "3,900원"],
+              ["601~700건", "3,800원"],
+              ["701~800건", "3,700원"],
+              ["801~1000건", "3,600원"],
+              ["1001건 이상", "3,500원"]
+            ].map(([range, price], idx) => (
+              <div
+                key={idx}
+                className={`rounded-xl p-6 shadow-md text-center bg-white hover:shadow-lg transition ${
+                  idx === 6 ? "border-2 border-blue-600" : ""
+                }`}
+              >
+                <h4 className="text-lg font-bold text-gray-800 mb-2">{range}</h4>
+                <div className="text-3xl font-extrabold text-blue-700 mb-2">{price}</div>
+                <p className="text-sm text-gray-600">
+                  {idx === 6 ? "가장 저렴한 구간!" : "표준 요금 구간"}
+                </p>
               </div>
             ))}
           </div>
 
-          {/* 추가 요금 안내 */}
-          <div className="mt-8 max-w-3xl mx-auto text-sm text-gray-700 space-y-2">
-            <h4 className="font-semibold text-blue-700">📌 추가 요금 안내</h4>
-            <ul className="list-disc pl-5">
-              <li>합포장: 1개당 500원 추가</li>
-              <li>택배 크기 초과: 80cm+500 / 100cm+1,000 / 120cm+1,700</li>
-              <li>지역 추가: 제주 +3,000 / 도서산간 +6,000</li>
-              <li>포장 후 취소 전환 시: 1,000원 추가</li>
-            </ul>
-          </div>
-
           {/* CTA 버튼 */}
-          <div className="text-center mt-10">
-            <a href="#contact" className="inline-block bg-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow hover:bg-blue-800 transition">
-              이용 신청하기
+          <div className="text-center mt-12">
+            <a
+              href="#contact"
+              className="inline-block bg-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow hover:bg-blue-800 transition"
+            >
+              요금제 신청하기
             </a>
           </div>
         </div>
       </section>
-      {/* 반품 / 불량 / 교환 처리 */}
+
+            {/* 반품 / 불량 / 교환 처리 */}
       <section id="returns" className="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-xl shadow space-y-6">
         <h3 className="text-2xl font-bold text-blue-700 text-center">🔁 반품 / 교환 / 불량 처리</h3>
         <ul className="list-disc pl-5 text-sm sm:text-base text-gray-800 space-y-1">
           <li>반품 택배비: 3,000원 / 교환 시: 1건 요금 + 반품비</li>
           <li>CCTV 검수 후 대발이 과실 → 반품 2,500 / 교환 5,000 지원</li>
           <li>접수 마감: 출고일 기준 7일 이내</li>
-          <li className="text-gray-500">※ 핏, 안감, 착용 후 문제 등은 제외</li>
+          <li className="text-gray-500">※ 안감, 핏, 패턴 등은 지원 제외</li>
         </ul>
       </section>
 
@@ -156,7 +162,7 @@ export default function DaebalHome() {
         <h3 className="text-2xl font-bold text-blue-700">📦 샘플 / 사장님 수령건</h3>
         <ul className="list-disc pl-5 text-sm text-gray-800 space-y-1">
           <li>거래처당 2,000원 + 택배비 3,000~6,000원</li>
-          <li>받는 사람은 반드시 “상호명”으로 기재</li>
+          <li>받는 사람은 반드시 상호명으로 입력</li>
           <li>상호명 미기재 시 포장비 1,000원 추가</li>
           <li>비닐 그대로 발송 / 묶음 발송 불가</li>
         </ul>
@@ -166,9 +172,9 @@ export default function DaebalHome() {
       <section className="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8 py-10 bg-white rounded-xl shadow space-y-4">
         <h3 className="text-2xl font-bold text-blue-700">📱 클로디 사용법</h3>
         <ul className="list-disc pl-5 text-sm text-gray-800 space-y-1">
-          <li>픽업 주문서는 클로디 어플로 작성</li>
+          <li>픽업 주문서는 클로디 어플에서 작성</li>
           <li>반납/교환 전달사항: [상품명, 색상, 사이즈 반품] 형식</li>
-          <li>전달사항 누락 시 매장에서 접수되지 않을 수 있음</li>
+          <li>전달사항 누락 시 접수되지 않을 수 있음</li>
         </ul>
       </section>
 
@@ -178,8 +184,8 @@ export default function DaebalHome() {
         <ul className="list-disc pl-5 text-sm text-gray-800 space-y-1">
           <li>사이트: https://quickfinder.co.kr</li>
           <li>ID: 전화번호 뒤 8자리 / PW: a12345678!</li>
-          <li>영상은 송장번호 검색으로 확인 가능</li>
-          <li className="text-gray-500">※ 13:00~01:00 입력 건만 기록됩니다</li>
+          <li>송장번호 검색으로 영상 확인 가능</li>
+          <li className="text-gray-500">※ 13:00~01:00 입력 건만 영상 기록됨</li>
         </ul>
       </section>
 
@@ -187,25 +193,25 @@ export default function DaebalHome() {
       <section id="automation" className="bg-white mt-20 px-4 sm:px-6 lg:px-8 py-10 rounded-xl shadow max-w-5xl mx-auto space-y-4">
         <h3 className="text-2xl font-bold text-blue-800">⚙️ 출고 자동화 – 이지어드민</h3>
         <ul className="list-disc pl-5 text-sm text-gray-800 space-y-1">
-          <li>월 300건 이상 출고 쇼핑몰에 추천</li>
-          <li>스마트스토어 등과 연동 → 배송지 자동 입력</li>
+          <li>월 300건 이상 출고 쇼핑몰 추천</li>
+          <li>스마트스토어 등 연동 → 배송지 자동 입력</li>
           <li>송장 자동 등록 / 인건비 절감</li>
-          <li>출고 송장에 바코드 → 오배송률 0%에 가까움</li>
-          <li>실시간 재고 현황 확인 가능</li>
-          <li>월 사용료: 5만원</li>
-          <li>사용 신청: 카카오톡으로 개별 문의</li>
+          <li>바코드 출고 → 오배송률 0%에 가까움</li>
+          <li>재고 현황 실시간 확인 가능</li>
+          <li>월 사용료: 5만원 / 신청: 카카오톡 개별 문의</li>
         </ul>
       </section>
-      {/* 배송지 입력 안내 */}
-      <section className="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8 py-10 bg-white rounded-xl shadow space-y-4">
+
+            {/* 배송지 입력 안내 */}
+      <section id="delivery" className="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8 py-10 bg-white rounded-xl shadow space-y-4">
         <h3 className="text-2xl font-bold text-blue-700">✍️ 배송지 입력 안내</h3>
         <ul className="list-disc pl-5 text-sm sm:text-base text-gray-800 space-y-1">
-          <li>배송지는 대발이 배송지 사이트에서 입력해주세요</li>
-          <li>마우스를 올리면 각 항목에 도움말이 나타납니다</li>
+          <li>배송지는 대발이 배송지 사이트에서 작성해주세요</li>
+          <li>입력 항목에 마우스를 올리면 도움말이 표시됩니다</li>
           <li>정규 입력 마감: 13:00 ~ 익일 01:00</li>
-          <li>추가건 입력 시간: 01:00 ~ 13:00 (출고 보장 불가)</li>
-          <li>배송지는 매일 정확히 입력해주셔야 합니다</li>
-          <li>재고 출고 시 “재고발송”이라고 꼭 기재해주세요</li>
+          <li>추가 입력 시간: 01:00 ~ 13:00 (출고 보장 불가)</li>
+          <li>배송지는 매일 새로 정확히 입력해주세요</li>
+          <li>재고 출고 시 “재고발송” 기재 필수</li>
         </ul>
       </section>
 
@@ -214,36 +220,37 @@ export default function DaebalHome() {
         <h3 className="text-2xl font-bold text-blue-700 text-center">❓ 자주 묻는 질문 (FAQ)</h3>
         {[
           ["사입비는 따로 있나요?", "모든 비용이 건당 요금에 포함됩니다."],
-          ["운송장은 어떻게 확인하나요?", "익일 17시 전 배송지 사이트에 자동 배정됩니다 (한진택배)."],
-          ["포장은 어떻게 되나요?", "기본 개별 포장 / 요청 시 합포장 가능 (500원 추가)"],
-          ["검수 영상은 어떻게 확인하나요?", "퀵파인더 접속 후 송장번호로 검색 (13~01시 입력건만 기록됨)."],
+          ["운송장은 어떻게 확인하나요?", "익일 17시 전 배송지 사이트에 자동 배정됩니다."],
+          ["포장은 어떻게 되나요?", "기본 개별 포장 / 요청 시 합포장 가능 (추가 500원)"],
+          ["검수 영상은 어떻게 확인하나요?", "퀵파인더 사이트에서 송장번호 입력 시 확인 가능 (13~01시 입력건만 기록)"],
           ["불량 처리는 어떻게 하나요?", "CCTV 확인 후 과실 시 반품 2,500 / 교환 5,000 지원 (7일 이내 접수 필수)"],
           ["어떤 불량은 지원되지 않나요?", "핏, 안감, 패턴 틀어짐, 착용 후 문제 등은 제외"],
-          ["샘플건은 어떻게 처리되나요?", "거래처당 2,000원 + 택배비 / 상호명 미기재 시 포장비 1,000원 추가"],
-          ["입금 시 주의사항은?", "반드시 상호명으로 입금해야 하며, 성함 입금 시 누락될 수 있음"],
-          ["배송지 입력 마감은 언제인가요?", "정규: 13~01시 / 추가: 01~13시 (출고 보장 불가)"],
-          ["도매 주문도 해주나요?", "아니요. 도매매장 주문은 고객님이 직접 넣어주셔야 합니다."]
-        ].map(([q, a], idx) => (
-          <div key={idx} className="bg-white p-4 rounded shadow space-y-1">
+          ["샘플건은 어떻게 처리되나요?", "거래처당 2,000원 + 택배비 / 상호명 미기재 시 포장비 1,000원 발생"],
+          ["입금 시 주의사항은?", "반드시 상호명으로 입금 / 성함 입금 시 누락 위험"],
+          ["배송지 입력 시간은?", "정규: 13~01시 / 추가: 01~13시 (추가건은 출고 보장 불가)"],
+          ["도매매장 주문도 대신해주나요?", "아니요. 주문은 반드시 고객님이 직접 넣어주셔야 합니다."]
+        ].map(([q, a], index) => (
+          <div key={index} className="bg-white p-4 rounded shadow space-y-1">
             <strong className="block text-blue-700">Q. {q}</strong>
             <p className="text-sm text-gray-800">A. {a}</p>
           </div>
         ))}
       </section>
-      {/* 결제 및 입금 안내 */}
+
+            {/* 결제 및 입금 안내 */}
       <section className="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8 py-10 bg-white rounded-xl shadow space-y-4">
         <h3 className="text-2xl font-bold text-blue-700">💳 결제 및 입금 안내</h3>
         <ul className="list-disc pl-5 text-sm sm:text-base text-gray-800 space-y-1">
-          <li>무통장 입금만 가능</li>
+          <li>무통장 입금만 가능합니다</li>
           <li>입금 계좌: 신한은행 110-348-978893 (예금주: 최현준)</li>
-          <li>입금 시 반드시 “쇼핑몰 상호명”으로 입금</li>
+          <li>입금 시 반드시 “쇼핑몰 상호명”으로 기재해주세요</li>
           <li>성함으로 입금 시 누락될 수 있습니다</li>
           <li>입금 마감: 매일 23:30까지</li>
-          <li>세금계산서 발행 마감일: 매월 5일</li>
+          <li>세금계산서 마감일: 매월 5일</li>
         </ul>
       </section>
 
-      {/* 브랜드형 푸터 */}
+      {/* 푸터 */}
       <footer id="contact" className="bg-blue-700 text-white text-center text-sm py-10 mt-20">
         <div className="space-y-1">
           <p>문의: 010-9751-8876</p>
